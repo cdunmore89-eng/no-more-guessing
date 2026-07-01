@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No More Guessing</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <button class="menu-button" aria-label="Menu">☰</button>
+
+        <div class="brand">
+            <p class="eyebrow">Family Gift Hub</p>
+            <h1>No More Guessing</h1>
+        </div>
+
+        <div class="gift-icon" aria-hidden="true">🎁</div>
+    </header>
+
+    <main class="page">
+        <section class="intro-card">
+            <h2>Find gifts without the guessing game.</h2>
+            <p>
+                Tap a family member to see their wishlist.
+            </p>
+        </section>
+
+        <section class="search-section">
+            <label for="searchInput" class="sr-only">Search family member</label>
+            <input id="searchInput" type="search" placeholder="Search family member..." autocomplete="off" />
+        </section>
+
+        <section id="familyGrid" class="accordion-list" aria-label="Family wishlist cards"></section>
+    </main>
+
+    <footer class="site-footer">
+        <p>🔒 No private info. Just the helpful stuff.</p>
+    </footer>
+
+    <script src="people.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
