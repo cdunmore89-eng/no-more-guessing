@@ -2,17 +2,17 @@ const familyGrid = document.getElementById("familyGrid");
 const searchInput = document.getElementById("searchInput");
 
 function createPersonCard(person) {
-  const doNotBuyText = person.doNotBuy
-    ? `
+    const doNotBuyText = person.doNotBuy
+        ? `
       <p class="detail-line warning-line">
         <span class="detail-icon">🚫</span>
         <strong>Do Not Buy:</strong> ${person.doNotBuy}
       </p>
     `
-    : "";
+        : "";
 
-  const wishlistButton = person.wishlist
-    ? `
+    const wishlistButton = person.wishlist
+        ? `
       <a
         class="wishlist-button"
         href="${person.wishlist}"
@@ -22,9 +22,9 @@ function createPersonCard(person) {
         View Wishlist
       </a>
     `
-    : `<span class="wishlist-button disabled">Wishlist Coming Soon</span>`;
+        : `<span class="wishlist-button disabled">Wishlist Coming Soon</span>`;
 
-  return `
+    return `
     <article class="accordion-card" data-name="${person.name.toLowerCase()}">
       <button class="accordion-toggle" aria-expanded="false">
         <div class="person-summary">
@@ -85,32 +85,32 @@ function createPersonCard(person) {
 }
 
 function renderFamilyCards(list = familyMembers) {
-  familyGrid.innerHTML = list.map(createPersonCard).join("");
+    familyGrid.innerHTML = list.map(createPersonCard).join("");
 
-  const toggles = document.querySelectorAll(".accordion-toggle");
+    const toggles = document.querySelectorAll(".accordion-toggle");
 
-  toggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const card = toggle.closest(".accordion-card");
-      const content = card.querySelector(".accordion-content");
-      const chevron = card.querySelector(".chevron");
-      const isOpen = content.classList.contains("open");
+    toggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+            const card = toggle.closest(".accordion-card");
+            const content = card.querySelector(".accordion-content");
+            const chevron = card.querySelector(".chevron");
+            const isOpen = content.classList.contains("open");
 
-      content.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      chevron.textContent = isOpen ? "⌄" : "⌃";
+            content.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", String(!isOpen));
+            chevron.textContent = isOpen ? "⌄" : "⌃";
+        });
     });
-  });
 }
 
 searchInput.addEventListener("input", () => {
-  const searchTerm = searchInput.value.toLowerCase().trim();
+    const searchTerm = searchInput.value.toLowerCase().trim();
 
-  const filteredMembers = familyMembers.filter((person) => {
-    return person.name.toLowerCase().includes(searchTerm);
-  });
+    const filteredMembers = familyMembers.filter((person) => {
+        return person.name.toLowerCase().includes(searchTerm);
+    });
 
-  renderFamilyCards(filteredMembers);
+    renderFamilyCards(filteredMembers);
 });
 
 renderFamilyCards();

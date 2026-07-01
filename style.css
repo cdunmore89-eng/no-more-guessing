@@ -26,6 +26,8 @@ body {
     min-height: 100vh;
 }
 
+/* Header */
+
 .app-header {
     position: sticky;
     top: 0;
@@ -72,10 +74,14 @@ h1 {
     font-size: 1.45rem;
 }
 
+/* Page layout */
+
 .page {
     width: min(720px, calc(100% - 28px));
     margin: 18px auto 44px;
 }
+
+/* Intro */
 
 .intro-card {
     background: rgba(255, 253, 248, 0.92);
@@ -84,6 +90,7 @@ h1 {
     padding: 18px;
     margin-bottom: 14px;
     box-shadow: 0 8px 18px rgba(45, 36, 29, 0.08);
+    text-align: center;
 }
 
 .intro-card h2 {
@@ -93,11 +100,67 @@ h1 {
 }
 
 .intro-card p {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 520px;
     color: var(--muted);
     line-height: 1.5;
     font-size: 0.98rem;
 }
+
+/* Submit/update form callout */
+
+.submit-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--green);
+    color: white;
+    border-radius: 18px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 22px rgba(15, 61, 46, 0.18);
+}
+
+.submit-copy {
+    flex: 1;
+}
+
+.submit-section h2 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+}
+
+.submit-section p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.35;
+    font-size: 0.9rem;
+}
+
+.submit-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 800;
+    white-space: nowrap;
+    box-shadow: 0 8px 16px rgba(45, 36, 29, 0.16);
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.submit-button:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+}
+
+/* Search */
 
 .search-section {
     margin-bottom: 14px;
@@ -119,6 +182,8 @@ h1 {
     outline: 3px solid rgba(214, 168, 79, 0.35);
     border-color: var(--gold);
 }
+
+/* Accordion cards */
 
 .accordion-list {
     display: grid;
@@ -249,6 +314,8 @@ h1 {
     cursor: not-allowed;
 }
 
+/* Footer */
+
 .site-footer {
     position: sticky;
     bottom: 0;
@@ -265,12 +332,29 @@ h1 {
     margin: 0;
 }
 
+/* Accessibility helper */
+
 .sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
     overflow: hidden;
     left: -999px;
+}
+
+/* Responsive */
+
+@media (max-width: 560px) {
+    .submit-section {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
 }
 
 @media (min-width: 760px) {
