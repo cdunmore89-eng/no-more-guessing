@@ -1,18 +1,18 @@
 const familyGrid = document.getElementById("familyGrid");
 const searchInput = document.getElementById("searchInput");
 
-function createPersonCard(person, index) {
-    const doNotBuyText = person.doNotBuy
-        ? `
+function createPersonCard(person) {
+  const doNotBuyText = person.doNotBuy
+    ? `
       <p class="detail-line warning-line">
         <span class="detail-icon">🚫</span>
         <strong>Do Not Buy:</strong> ${person.doNotBuy}
       </p>
     `
-        : "";
+    : "";
 
-    const wishlistButton = person.wishlist
-        ? `
+  const wishlistButton = person.wishlist
+    ? `
       <a
         class="wishlist-button"
         href="${person.wishlist}"
@@ -22,11 +22,11 @@ function createPersonCard(person, index) {
         View Wishlist
       </a>
     `
-        : `<span class="wishlist-button disabled">Wishlist Coming Soon</span>`;
+    : `<span class="wishlist-button disabled">Wishlist Coming Soon</span>`;
 
-    return `
+  return `
     <article class="accordion-card" data-name="${person.name.toLowerCase()}">
-      <button class="accordion-toggle" aria-expanded="${index === 0 ? "true" : "false"}">
+      <button class="accordion-toggle" aria-expanded="false">
         <div class="person-summary">
           <img
             src="${person.image}"
@@ -40,10 +40,10 @@ function createPersonCard(person, index) {
           </div>
         </div>
 
-        <span class="chevron">${index === 0 ? "⌃" : "⌄"}</span>
+        <span class="chevron">⌄</span>
       </button>
 
-      <div class="accordion-content ${index === 0 ? "open" : ""}">
+      <div class="accordion-content">
         <div class="details">
           <p class="detail-line">
             <span class="detail-icon">👕</span>
@@ -85,32 +85,32 @@ function createPersonCard(person, index) {
 }
 
 function renderFamilyCards(list = familyMembers) {
-    familyGrid.innerHTML = list.map(createPersonCard).join("");
+  familyGrid.innerHTML = list.map(createPersonCard).join("");
 
-    const toggles = document.querySelectorAll(".accordion-toggle");
+  const toggles = document.querySelectorAll(".accordion-toggle");
 
-    toggles.forEach((toggle) => {
-        toggle.addEventListener("click", () => {
-            const card = toggle.closest(".accordion-card");
-            const content = card.querySelector(".accordion-content");
-            const chevron = card.querySelector(".chevron");
-            const isOpen = content.classList.contains("open");
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const card = toggle.closest(".accordion-card");
+      const content = card.querySelector(".accordion-content");
+      const chevron = card.querySelector(".chevron");
+      const isOpen = content.classList.contains("open");
 
-            content.classList.toggle("open");
-            toggle.setAttribute("aria-expanded", String(!isOpen));
-            chevron.textContent = isOpen ? "⌄" : "⌃";
-        });
+      content.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      chevron.textContent = isOpen ? "⌄" : "⌃";
     });
+  });
 }
 
 searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+  const searchTerm = searchInput.value.toLowerCase().trim();
 
-    const filteredMembers = familyMembers.filter((person) => {
-        return person.name.toLowerCase().includes(searchTerm);
-    });
+  const filteredMembers = familyMembers.filter((person) => {
+    return person.name.toLowerCase().includes(searchTerm);
+  });
 
-    renderFamilyCards(filteredMembers);
+  renderFamilyCards(filteredMembers);
 });
 
 renderFamilyCards();
